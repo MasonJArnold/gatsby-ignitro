@@ -52,7 +52,7 @@ module.exports = {
           options:
           {
             baseUrl: `ignitro-react-stage.herokuapp.com`,
-            protocol: `http`
+            protocol: `https`
           }
         }
       ],
@@ -70,7 +70,7 @@ module.exports = {
       ],
       verboseOutput: true,
       searchAndReplaceContentUrls: {
-        sourceUrl: "https://ignitro-react-stage.herokuapp.com",
+        sourceUrl: "ignitro-react-stage.herokuapp.com",
         replacementUrl: "gatsbyreact.wpengine.com/",
       },
     },
