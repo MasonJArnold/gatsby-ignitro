@@ -51,7 +51,7 @@ module.exports = {
           resolve: `gatsby-wordpress-inline-images`,
           options:
           {
-            baseUrl: `http://localhost:8000`,
+            baseUrl: `ignitro-react-stage.herokuapp.com`,
             protocol: `http`
           }
         }
@@ -70,7 +70,7 @@ module.exports = {
       ],
       verboseOutput: true,
       searchAndReplaceContentUrls: {
-        sourceUrl: "http://localhost:8000/",
+        sourceUrl: "https://ignitro-react-stage.herokuapp.com",
         replacementUrl: "gatsbyreact.wpengine.com/",
       },
     },
