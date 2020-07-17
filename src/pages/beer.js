@@ -9,5 +9,6 @@ export default ({pageContext}) => (
         <h1 dangerouslySetInnerHTML={{__html: pageContext.title}} />
         <div dangerouslySetInnerHTML={{__html: pageContext.content}} />
         <BeerItems/>
+        
     </Layout>  
 );
