@@ -51,7 +51,7 @@ module.exports = {
           resolve: `gatsby-wordpress-inline-images`,
           options:
           {
-            baseUrl: `ignitro-react-stage.herokuapp.com`,
+            baseUrl: `inspiring-meninsky-da9386.netlify.app`,
             protocol: `https`
           }
         }
@@ -70,7 +70,7 @@ module.exports = {
       ],
       verboseOutput: true,
       searchAndReplaceContentUrls: {
-        sourceUrl: "ignitro-react-stage.herokuapp.com",
+        sourceUrl: "inspiring-meninsky-da9386.netlify.app",
         replacementUrl: "gatsbyreact.wpengine.com/",
       },
     },
