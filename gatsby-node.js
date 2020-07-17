@@ -38,6 +38,7 @@ exports.createPages = async ({ graphql, actions }) => {
         edges {
           node {
             id
+            wordpress_id
             path
             status
             template
@@ -48,6 +49,7 @@ exports.createPages = async ({ graphql, actions }) => {
         edges {
           node {
             id
+            wordpress_id
             slug
             status
             template
@@ -55,9 +57,9 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
       }
-      allWordpressWpBeer{
+      allWordpressWpBeer {
         edges {
-        node {
+          node {
             id
             wordpress_id
             title
@@ -76,7 +78,7 @@ exports.createPages = async ({ graphql, actions }) => {
   }
 
   // Access query results via object destructuring.
-  const { allWordpressPost } = result.data
+  const { allWordpressPost, allWordpressPage, allWordpressWpBeer } = result.data
 
   const postTemplate = path.resolve("./src/templates/post.js")
   // const BeerPost = path.resolve("./src/templates/post.js")
@@ -95,29 +97,32 @@ exports.createPages = async ({ graphql, actions }) => {
       },
     })
   })
+
+
   const pageTemplate = path.resolve("./src/templates/page.js")
-  const Pages = result.data.allWordpressPage.edges
-  Pages.forEach(page => {
+  allWordpressPage.edges.forEach(edge => {
     createPage({
-      path: `/${page.node.slug}`,
-      component: PageTemplate,
-      context: {
-        id: page.node.wordpress_id,
-      },
-    })
-  })
-  const BeerPost = path.resolve("./src/templates/BeerPost.js")
-  _.each(result.data.allWordpressWpBeer.edges, edge => {
-    createPage({
-      path: `/beer/${edge.node.slug}/`,
-      component: slash(BeerPost),
+      path: `/${edge.node.slug}`,
+      component: pageTemplate,
       context: {
         id: edge.node.wordpress_id,
       },
     })
   })
 
-  const BeerTemplate = path.resolve("./src/templates/beer.js")
+
+  const beerTemplate = path.resolve("./src/templates/beer.js")
+  allWordpressWpBeer.edges.forEach(edge => {
+    createPage({
+      path: `/beer/${edge.node.slug}/`,
+      component: slash(beerTemplate),
+      context: {
+        id: edge.node.wordpress_id,
+      },
+    })
+  })
+
+  /*const BeerTemplate = path.resolve("./src/templates/beer.js")
         // We want to create a detailed page for each
         // post node. We'll just use the WordPress Slug for the slug.
         // The Post ID is prefixed with 'POST_'
@@ -130,7 +135,6 @@ exports.createPages = async ({ graphql, actions }) => {
             component: slash(BeerTemplate),
             context: edge.node,
           })
-        })
+        })*/
    
 }
-

@@ -25,7 +25,6 @@ const BeerItems = () => {
             {props.allWordpressWpBeer.edges.map(BeerItem => (
             <div key={BeerItem.node.id}>
                 <h2>{BeerItem.node.title}</h2>
-                
                 <div dangerouslySetInnerHTML={{__html:BeerItem.node.excerpt}} />
                 <Link to={`/beer/${BeerItem.node.slug}`}>
                     Read more...
