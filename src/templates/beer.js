@@ -1,13 +1,22 @@
-// src/templates/page/index.js
+import React  from "react"
 
-import React from "react"
 import Layout from "../components/layout"
-import beerItems from "../components/beerItems"
+import SEO from "../components/seo"
+import BeerItems from "../components/BeerItems"
 
-export default ({pageContext}) => (
+const BeerPage = ({ pageContext }) => {
+
+  const page = pageContext.page
+
+  return (
     <Layout>
-        <h1 dangerouslySetInnerHTML={{__html: pageContext.title}} />
-        <div dangerouslySetInnerHTML={{__html: pageContext.content}} />
-        <beerItems/>
-    </Layout>  
-);
+      <SEO title={page.title} />
+
+      <h1>{page.title}</h1>
+      <div dangerouslySetInnerHTML={{__html: page.content}} />
+
+    </Layout>
+  )
+}
+
+export default BeerPage

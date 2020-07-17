@@ -1,5 +1,5 @@
 import React from 'react';
-import {graphql, StaticQuery} from 'gatsby';
+import {graphql, StaticQuery, Link} from 'gatsby';
 import styled from 'styled-components';
 
 const BasicInfoWrapper = styled.div`
@@ -39,9 +39,11 @@ const SiteInfo = () => (
     `
     } render = {props => (
         <BasicInfoWrapper>
+            <Link to="/">
             <Sitelogo>
                 
             </Sitelogo>
+            </Link>
             <SiteTitle>
                 {props.allWordpressSiteMetadata.edges[0].node.name}
             </SiteTitle>
