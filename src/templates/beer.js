@@ -16,8 +16,8 @@ class BeerTemplate extends Component {
         <h1 className="test" dangerouslySetInnerHTML={{ __html: post.title }} />
         <div dangerouslySetInnerHTML={{ __html: post.content }} />
         <ul>
-          <li>Brand: {{post.acf.brand}}</li>
-          <li>Alcohol Content: {{post.acf.alcohol_content}}</li>
+          <li>Brand: {post.acf.brand}</li>
+          <li>Alcohol Content: {post.acf.alcohol_content}</li>
         </ul>
       </Layout>
     )
