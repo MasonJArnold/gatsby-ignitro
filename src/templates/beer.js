@@ -15,6 +15,10 @@ class BeerTemplate extends Component {
         <SEO title={post.title} description={(post.excerpt)} />
         <h1 className="test" dangerouslySetInnerHTML={{ __html: post.title }} />
         <div dangerouslySetInnerHTML={{ __html: post.content }} />
+        <ul>
+          <li>Brand: {{post.acf.brand}}</li>
+          <li>Alcohol Content: {{post.acf.alcohol_content}}</li>
+        </ul>
       </Layout>
     )
   }
@@ -38,6 +42,10 @@ export const pageQuery = graphql`
       wordpress_id
       excerpt
       content
+      acf {
+        alcohol_content
+        brand
+      }
     }
   }
 `
