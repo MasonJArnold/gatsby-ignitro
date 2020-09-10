@@ -57,18 +57,6 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
       }
-      allWordpressWpBeer {
-        edges {
-          node {
-            id
-            wordpress_id
-            title
-            excerpt
-            content
-            slug
-          }
-        }
-      }
     }
   `)
 
@@ -109,32 +97,5 @@ exports.createPages = async ({ graphql, actions }) => {
       },
     })
   })
-
-
-  const beerTemplate = path.resolve("./src/templates/beer.js")
-  allWordpressWpBeer.edges.forEach(edge => {
-    createPage({
-      path: `/beer/${edge.node.slug}/`,
-      component: slash(beerTemplate),
-      context: {
-        id: edge.node.wordpress_id,
-      },
-    })
-  })
-
-  /*const BeerTemplate = path.resolve("./src/templates/beer.js")
-        // We want to create a detailed page for each
-        // post node. We'll just use the WordPress Slug for the slug.
-        // The Post ID is prefixed with 'POST_'
-        _.each(result.data.allWordpressWpBeer.edges, edge => {
-          // console.log('---------');
-          //   console.log(edge.node.title,edge.node.template);
-          //   console.log('---------');
-          createPage({
-            path: `/beer/${edge.node.slug}/`,
-            component: slash(BeerTemplate),
-            context: edge.node,
-          })
-        })*/
    
 }

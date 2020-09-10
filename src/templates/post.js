@@ -2,8 +2,8 @@ import { graphql } from "gatsby"
 import PropTypes from "prop-types"
 import React, { Component } from "react"
 
-import Layout from "../components/layout"
-import SEO from "../components/seo"
+import Layout from "../layouts"
+import Head from "../components/head"
 
 
 class PostTemplate extends Component {
@@ -12,7 +12,7 @@ class PostTemplate extends Component {
     // @TODO: STEP #5: Use title and content in Gatsby.
     return (
       <Layout>
-        <SEO title={post.title} description={(post.excerpt)} />
+        <Head title={post.title} description={(post.excerpt)} />
         <h1 className="test" dangerouslySetInnerHTML={{ __html: post.title }} />
         <div dangerouslySetInnerHTML={{ __html: post.content }} />
       </Layout>

@@ -2,8 +2,8 @@ import React from "react"
 import { Link, graphql } from "gatsby"
 import PropTypes from "prop-types"
 
-import Layout from "../components/layout"
-import SEO from "../components/seo"
+import Layout from "../layouts"
+import Head from "../components/head"
 
 const IndexPage = props => {
   const { nodes } = props.data.allWordpressPost
@@ -17,7 +17,7 @@ const IndexPage = props => {
   ))
   return (
     <Layout>
-      <SEO title="Home" />
+      <Head title="Home" />
       <h1>Hi people</h1>
       <p>Welcome to my new Wordpress blog built using Gatsby!</p>
       <div>{blogPosts}</div>

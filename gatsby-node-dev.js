@@ -45,7 +45,7 @@ exports.createPages = ({ graphql, actions }) => {
  
         // Create Page pages.
         const pageTemplate = path.resolve("./src/templates/page.js")
-        const beerContentTemplate = path.resolve("./src/templates/beer.js")
+        // const beerContentTemplate = path.resolve("./src/templates/beer.js")
 
         //const newsUnderContentTemplate = path.resolve("./src/templates/newsUnderContent.js")
         // We want to create a detailed page for each
@@ -64,8 +64,8 @@ exports.createPages = ({ graphql, actions }) => {
             // can query data specific to each page.
             path: `/${edge.node.slug}/`,
             //component: slash(edge.node.template==='items_under_content.php' ? newsUnderContentTemplate : pageTemplate),
-            //component: slash(pageTemplate),
-            component: slash(edge.node.template==='beer_content.php' ? beerContentTemplate : pageTemplate),
+            component: slash(pageTemplate),
+            // component: slash(edge.node.template==='beer_content.php' ? beerContentTemplate : pageTemplate),
             context: edge.node,
           })
         })
@@ -103,9 +103,6 @@ exports.createPages = ({ graphql, actions }) => {
             //Gatsby uses redux to manage its internal state
             //plugins and sites can use fucntions like "createPage"
             //to interact with Gatsby
-            console.log('---------');
-            console.log(edge.node.title,edge.node.template);
-            console.log('---------');
             createPage({
               path: `/post/${edge.node.slug}/`,
               component: slash(postTemplate),
@@ -115,50 +112,6 @@ exports.createPages = ({ graphql, actions }) => {
           resolve()
         })
       })
-    // ==== END POSTS ====
-    // ==== MTB NEWS (WORDPRESS CUSTOM) ====
-    .then(() => {
-      graphql(
-        `
-          {
-            
-              allWordpressWpBeer{
-                  edges {
-                  node {
-                      id
-                      wordpress_id
-                      title
-                      excerpt
-                      content
-                      slug
-                  }
-                  }
-              }
-            }
-          
-        `
-      ).then(result => {
-        if (result.errors) {
-          console.log(result.errors)
-          reject(result.errors)
-        }
-        const beerTemplate = path.resolve("./src/templates/beer.js")
-        // We want to create a detailed page for each
-        // post node. We'll just use the WordPress Slug for the slug.
-        // The Post ID is prefixed with 'POST_'
-        _.each(result.data.allWordpressWpBeer.edges, edge => {
-          // console.log('---------');
-          //   console.log(edge.node.title,edge.node.template);
-          //   console.log('---------');
-          createPage({
-            path: `/beer/${edge.node.slug}/`,
-            component: slash(beerTemplate),
-            context: edge.node,
-          })
-        })
-        resolve()
-      })
-    })
-  // ==== END POSTS ====
+    // ==== END POSTS ====ç
     })
 }

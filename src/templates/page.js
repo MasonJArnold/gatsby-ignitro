@@ -26,12 +26,12 @@
 
 import React from "react"
 import { graphql } from "gatsby"
-import Layout from "../components/layout.js"
-import SEO from "../components/seo"
+import Layout from "../layouts"
+import Head from "../components/head"
 
 const Page = ({ data }) => (
   <Layout>
-    <SEO
+    <Head
       title={data.wordpressPage.title}
       description={data.wordpressPage.excerpt}
     />
