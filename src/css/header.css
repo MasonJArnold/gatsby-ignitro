@@ -1,0 +1,9 @@
+.headerFluid{background-color: #e25641;}
+.headerFluidNav{background-color: #000;}
+.headerNavColumn{padding:0px !important;}
+.mobileFluid{background-color: #e25641;display: none;}
+.hamburgerWrap{display: none;}
+@media screen and (max-width:991px){
+	.headerFluid, .headerFluidNav{display: none;}
+	.hamburgerWrap, .mobileFluid{display: inherit;}
+}
