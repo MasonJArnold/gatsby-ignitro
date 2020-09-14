@@ -1,18 +1,33 @@
 import React from 'react';
 import { scaleRotate as Menu } from 'react-burger-menu'
-// import Menu from 'react-burger-menu/lib/menus/scaleRotate'
-import '../css/hamburger.css';
 import Logo from '../components/logo';
+import { StaticQuery, graphql } from "gatsby"
 
-class Hamburger extends React.Component {
+import '../css/hamburger.css';
 
-  showSettings (event) {
-    event.preventDefault();
-  }
-
-  render () {
-    // NOTE: You also need to provide styles, see https://github.com/negomi/react-burger-menu#styling
-    return (
+export default () => (
+  <StaticQuery
+    query={graphql`
+      query {
+        allWordpressWpApiMenusMenusItems(filter: {slug: {eq: "mobile"}}) {
+          edges {
+            node {
+              slug
+              name
+              items {
+                title
+                url
+                object_slug
+                type
+                wordpress_id
+              }
+            }
+          }
+        }
+      }
+    `}
+    render={data => {
+     return (
      <div class="hamburgerWrap">
       <Menu disableAutoFocus pageWrapId={ "page-wrap" } outerContainerId={ "outer-container" }>
        <div className="hamburgerLogoWrap">
@@ -20,14 +35,25 @@ class Hamburger extends React.Component {
        className="hamburgerLogo flex-img" 
         />
         </div>
-        <a id="home" className="menu-item" href="/">Home</a>
-        <a id="about" className="menu-item" href="/about">About</a>
-        <a id="contact" className="menu-item" href="/contact">Contact</a>
-        <a onClick={ this.showSettings } className="menu-item" href="">Settings</a>
+            {data &&
+              data.allWordpressWpApiMenusMenusItems &&
+              data.allWordpressWpApiMenusMenusItems.edges &&
+              data.allWordpressWpApiMenusMenusItems.edges[0] &&
+              data.allWordpressWpApiMenusMenusItems.edges[0].node &&
+              data.allWordpressWpApiMenusMenusItems.edges[0].node.items &&
+              data.allWordpressWpApiMenusMenusItems.edges[0].node.items.map(
+                prop => {
+                  return (
+                  <a 
+                  className="menu-item" 
+                  href={prop.object_slug}>
+                  {prop.title}</a>
+                  )
+                }
+              )}
       </Menu>
      </div>
-    );
-  }
-}
-
-export default Hamburger
+      )
+    }}
+  />
+)
