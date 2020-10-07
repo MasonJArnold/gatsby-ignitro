@@ -1,10 +1,7 @@
 import React from 'react';
 import Logo from '../components/logo';
-<<<<<<< HEAD
 import Nav from '../components/nav';
 import PhoneIcon from '../components/phoneIcon';
-
-import Nav from '../components/nav';
 
 import '../css/header.css';
 
