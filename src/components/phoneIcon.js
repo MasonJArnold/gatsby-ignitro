@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default (props) => (
   <StaticQuery
-    query={graphql`
+T    query={graphql`
       query {
         allWordpressAcfOptions {
             nodes {
@@ -22,7 +22,7 @@ export default (props) => (
       let phone = data.allWordpressAcfOptions.nodes[0].options.phone;
 
       return (
-         <a className="phoneIcon" href="tel:{phone}"><FontAwesomeIcon icon={faPhone} /></a>
+         <a className="phoneIcon" href={"tel:"+phone}><FontAwesomeIcon icon={faPhone} /></a>
       );
     }
   }

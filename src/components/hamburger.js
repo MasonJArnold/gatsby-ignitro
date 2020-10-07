@@ -28,7 +28,7 @@ export default () => (
     `}
     render={data => {
      return (
-     <div class="hamburgerWrap">
+     <div className="hamburgerWrap">
       <Menu disableAutoFocus pageWrapId={ "page-wrap" } outerContainerId={ "outer-container" }>
        <div className="hamburgerLogoWrap">
        <Logo 

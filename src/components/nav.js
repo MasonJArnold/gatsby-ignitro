@@ -40,10 +40,15 @@ export default () => (
               data.allWordpressWpApiMenusMenusItems.edges[0].node.items &&
               data.allWordpressWpApiMenusMenusItems.edges[0].node.items.map(
                 prop => {
+                  var has_children ='';
+                  if(prop.wordpress_children){
+                    has_children = 'has-children';
+                  }
+
                   return (
                     <li 
                     id={"nav-menu-item-"+prop.wordpress_id}
-                    className={prop.type}
+                    className={prop.type+" "+has_children}
                     >
                       <a
                         className="nav-link active"
@@ -52,22 +57,24 @@ export default () => (
                       >
                         {prop.title}
                       </a>
-                      <ul className="dropdown-menu">
-                        {prop &&
-                          prop.wordpress_children &&
-                          prop.wordpress_children.map(child => {
+                      {prop &&
+                        prop.wordpress_children &&
+                          <ul className="dropdown-menu">
+                        
+                          { prop.wordpress_children.map(child => {
                             return (
                               <li id={"nav-menu-item-"+prop.wordpress_id}>
-                              <a
-                                href={child.url}
-                                alt={child.title}
-                              >
+                                <a
+                                  href={child.url}
+                                  alt={child.title}
+                                >
                                 {child.title}
                               </a>
                               </li>
                             )
-                          })}
-                      </ul>
+                          }) }
+                        </ul>
+                      }
 
                     </li>
                   )
