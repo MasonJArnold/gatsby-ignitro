@@ -18,12 +18,7 @@ function Header() {
             </div>
           </div>
          </div>
-          <PhoneIcon />
-            <div class="col-2">
-              Phone ICON
-            </div>
-          </div>
-         </div>
+        <PhoneIcon />
       </div>
       <div className="headerFluid">
         <div className="container">
