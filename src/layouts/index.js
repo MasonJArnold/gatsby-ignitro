@@ -5,23 +5,24 @@
  * See: https://www.gatsbyjs.org/docs/use-static-query/
  */
 
-// import React from "react"
-// import PropTypes from "prop-types"
-// import { useStaticQuery, graphql } from "gatsby"
-
 import React from "react"
 
-import Header from '../containers/header'
+import Header from '../containers/header';
+import Footer from '../containers/footer';
+import Hamburger from '../components/hamburger';
 
 import '../css/grid.css';
 import '../css/global.css';
 
 const Layout = ({ children }) => (
-  <div>
-    <Header />
-    <div>
-    {children}
-    </div>
+  
+  <div id="outer-container">
+  	<Hamburger />
+  	<main id="page-wrap">
+  		<Header />
+  		{children}
+  		<Footer />
+  	</main>
   </div>
 )
 

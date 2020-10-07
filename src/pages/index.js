@@ -8,18 +8,22 @@ import Head from "../components/head"
 const IndexPage = props => {
   const { nodes } = props.data.allWordpressPost
   const blogPosts = nodes.map(post => (
-    <div key={post.id}>
-      <Link to={post.slug}>
-        <h2 dangerouslySetInnerHTML={{ __html: post.title }} />
-      </Link>
-      <p dangerouslySetInnerHTML={{ __html: post.excerpt }} />
+    <div className="col-sm-12">
+      <div key={post.id}>
+        <Link to={post.slug}>
+          <h2 dangerouslySetInnerHTML={{ __html: post.title }} />
+        </Link>
+        <p dangerouslySetInnerHTML={{ __html: post.excerpt }} />
+      </div>
+
     </div>
   ))
+
   return (
     <Layout>
       <Head title="Home" />
       <h1>Hi people</h1>
-      <p>Welcome to my new Wordpress blog built using Gatsby!</p>
+      <p>Welcome to my new Wordpress blog built using Gatsby!!</p>
       <div>{blogPosts}</div>
     </Layout>
   )

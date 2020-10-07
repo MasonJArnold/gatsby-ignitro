@@ -1,32 +1,80 @@
-import React from 'react';
-
+import React from "react"
+import { StaticQuery, graphql } from "gatsby"
 import '../css/nav.css';
 
-function Nav() {
-  return (
-<ul className="main-navigation">
-  <li><a href="https://www.yahoo.com">Home</a></li>
-  <li><a href="https://www.yahoo.com">Front End Design</a>
-    <ul className="dropdown-menu">
-      <li><a href="https://www.yahoo.com">HTML dasfdf fdas</a></li>
-      <li><a href="https://www.yahoo.com">CSS</a></li>
-    </ul>
-  </li>
-  <li><a href="https://www.yahoo.com">WordPress Development</a>
-    <ul className="dropdown-menu">
-      <li><a href="https://www.yahoo.com">Themes</a></li>
-      <li><a href="https://www.yahoo.com">Plugins</a>
-      <ul className="dropdown-menu">
-            <li><a href="https://www.yahoo.com">Themes Themes</a></li>
-            <li><a href="https://www.yahoo.com">Plugins</a></li>
-       </ul>
-      </li>
-      <li><a href="https://www.yahoo.com">Custom Post Types</a></li>
-      <li><a href="https://www.yahoo.com">Options</a></li>
-    </ul>
-  </li>
-  <li><a href="https://www.yahoo.com">About Us</a></li>
-</ul>
-  );
-}
-export default Nav;
+export default () => (
+  <StaticQuery
+    query={graphql`
+      query {
+        allWordpressWpApiMenusMenusItems(filter: {slug: {eq: "primary"}}) {
+          edges {
+            node {
+              slug
+              name
+              items {
+                title
+                url
+                object_slug
+                type
+                wordpress_children {
+                  title
+                  url
+                  wordpress_id
+                }
+                wordpress_id
+              }
+            }
+          }
+        }
+      }
+    `}
+    render={data => {
+
+      return (
+          <ul className="main-navigation">
+            {data &&
+              data.allWordpressWpApiMenusMenusItems &&
+              data.allWordpressWpApiMenusMenusItems.edges &&
+              data.allWordpressWpApiMenusMenusItems.edges[0] &&
+              data.allWordpressWpApiMenusMenusItems.edges[0].node &&
+              data.allWordpressWpApiMenusMenusItems.edges[0].node.items &&
+              data.allWordpressWpApiMenusMenusItems.edges[0].node.items.map(
+                prop => {
+                  return (
+                    <li 
+                    id={"nav-menu-item-"+prop.wordpress_id}
+                    className={prop.type}
+                    >
+                      <a
+                        className="nav-link active"
+                        href={prop.url}
+                        alt={prop.title}
+                      >
+                        {prop.title}
+                      </a>
+                      <ul className="dropdown-menu">
+                        {prop &&
+                          prop.wordpress_children &&
+                          prop.wordpress_children.map(child => {
+                            return (
+                              <li id={"nav-menu-item-"+prop.wordpress_id}>
+                              <a
+                                href={child.url}
+                                alt={child.title}
+                              >
+                                {child.title}
+                              </a>
+                              </li>
+                            )
+                          })}
+                      </ul>
+
+                    </li>
+                  )
+                }
+              )}
+          </ul>
+      )
+    }}
+  />
+)
