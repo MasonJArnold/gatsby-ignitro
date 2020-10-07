@@ -44,7 +44,7 @@ module.exports = {
     resolve: "gatsby-source-wordpress",
     options: {
       baseUrl: "gatsbyreact.wpengine.com",
-      protocol: "http",
+      protocol: "https",
       hostingWPCOM: false,
       useACF: true,
       plugins: [
