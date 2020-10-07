@@ -5,9 +5,12 @@
   "version": "0.1.0",
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
+<<<<<<< HEAD
     "@fortawesome/fontawesome-svg-core": "^1.2.32",
     "@fortawesome/free-solid-svg-icons": "^5.15.1",
     "@fortawesome/react-fontawesome": "^0.1.11",
+=======
+>>>>>>> 4271ce4be373c37124c7b3831218c372636d33f8
     "babel-plugin-styled-components": "^1.10.7",
     "bluebird": "^3.7.2",
     "dom-parser": "^0.1.6",

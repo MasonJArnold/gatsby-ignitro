@@ -43,6 +43,7 @@ export default () => (
                   return (
                     <li 
                     id={"nav-menu-item-"+prop.wordpress_id}
+                    className={prop.type}
                     >
                       <a
                         className="nav-link active"

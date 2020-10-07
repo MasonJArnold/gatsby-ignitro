@@ -1,7 +1,11 @@
 import React from 'react';
 import Logo from '../components/logo';
+<<<<<<< HEAD
 import Nav from '../components/nav';
 import PhoneIcon from '../components/phoneIcon';
+
+import Nav from '../components/nav';
+
 import '../css/header.css';
 
 function Header() {
@@ -18,6 +22,11 @@ function Header() {
           </div>
          </div>
           <PhoneIcon />
+            <div class="col-2">
+              Phone ICON
+            </div>
+          </div>
+         </div>
       </div>
       <div className="headerFluid">
         <div className="container">
@@ -41,7 +50,6 @@ function Header() {
             </div>
           </div>
          </div>
-        
       </div>
     </React.Fragment>
   );
