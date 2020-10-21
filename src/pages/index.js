@@ -15,7 +15,6 @@ const IndexPage = props => {
         </Link>
         <p dangerouslySetInnerHTML={{ __html: post.excerpt }} />
       </div>
-
     </div>
   ))
 

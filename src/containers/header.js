@@ -30,7 +30,6 @@ function Header() {
               />
             </div>
             <div className="col-sm-9">
-              CTAS Here
             </div>
           </div>
         </div>

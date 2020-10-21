@@ -22,7 +22,7 @@ T    query={graphql`
       let phone = data.allWordpressAcfOptions.nodes[0].options.phone;
 
       return (
-         <a className="phoneIcon" href={"tel:"+phone}><FontAwesomeIcon icon={faPhone} /></a>
+         <a role="button" aria-label="phone icon" className="phoneIcon" href={"tel:"+phone}><FontAwesomeIcon icon={faPhone} /></a>
       );
     }
   }

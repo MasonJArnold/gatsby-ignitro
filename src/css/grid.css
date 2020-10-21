@@ -55,11 +55,11 @@
   }
 }
 
-@media (min-width: 1600px) {
+/*@media (min-width: 1600px) {
   .container {
     max-width: 1600px;
   }
-}
+}*/
 
 .grid {
   -webkit-box-sizing: border-box;

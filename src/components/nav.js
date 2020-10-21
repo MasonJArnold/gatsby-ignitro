@@ -51,7 +51,7 @@ export default () => (
                     className={prop.type+" "+has_children}
                     >
                       <a
-                        className="nav-link active"
+                        className="nav-link"
                         href={prop.url}
                         alt={prop.title}
                       >
