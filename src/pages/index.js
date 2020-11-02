@@ -1,53 +1,38 @@
 import React from "react"
-import { Link, graphql } from "gatsby"
-import PropTypes from "prop-types"
-
 import Layout from "../layouts"
-import Head from "../components/head"
+import Hero from '../components/hero';
 
 const IndexPage = props => {
-  const { nodes } = props.data.allWordpressPost
-  const blogPosts = nodes.map(post => (
-    <div className="col-sm-12">
-      <div key={post.id}>
-        <Link to={post.slug}>
-          <h2 dangerouslySetInnerHTML={{ __html: post.title }} />
-        </Link>
-        <p dangerouslySetInnerHTML={{ __html: post.excerpt }} />
-      </div>
-    </div>
-  ))
-
+  const {hero} = props.data.wordpressAcfPages;
   return (
     <Layout>
-      <Head title="Home" />
-      <h1>Hi people</h1>
-      <p>Welcome to my new Wordpress blog built using Gatsby!!</p>
-      <div>{blogPosts}</div>
+      <Hero 
+      		hero_copy={hero.hero_copy} 
+      		hero_cta={hero.hero_cta} 
+      		hero_cta_link={hero.hero_cta_link} 
+      		hero_h1_title={hero.hero_h1_title} 
+      		hero_image={hero.hero_background.source_url} 
+      />
     </Layout>
   )
 }
-
-IndexPage.propTypes = {
-  data: PropTypes.object.isRequired,
-}
-
 export default IndexPage
 
-// @TODO: STEP #4: Get current WP Post data via ID.
-export const postsQuery = graphql`
-  query PostsQuery {
-    allWordpressPost {
-      nodes {
-        author{
-          name
+
+export const query = graphql`
+  query {
+    wordpressAcfPages(wordpress_id: {eq: 701}) {
+
+      hero: acf {
+        hero_copy
+        hero_cta
+        hero_cta_link
+        hero_h1_title
+        hero_background {
+          source_url
         }
-        date(formatString: "")
-        slug
-        title
-        excerpt
-        id
       }
+
     }
   }
 `
