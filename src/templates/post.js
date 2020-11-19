@@ -14,7 +14,7 @@ class PostTemplate extends Component {
       <Layout>
         <Head title={post.title} description={(post.excerpt)} />
         <h1 className="test" dangerouslySetInnerHTML={{ __html: post.title }} />
-        <div dangerouslySetInnerHTML={{ __html: post.content }} />
+        <div className="post-content" dangerouslySetInnerHTML={{ __html: post.content }} />
       </Layout>
     )
   }

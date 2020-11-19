@@ -1,3 +1,5 @@
+require('dotenv').config({path: `.env.${process.env.NODE_ENV}`});
+
 module.exports = {
   siteMetadata: {
     title: `Gatsby Default Starter`,
@@ -32,7 +34,7 @@ module.exports = {
       resolve: 'gatsby-source-gravityforms',
       options: {
         // Base URL needs to include protocol (http/https)
-        baseUrl: 'https://gatsbyreact.wpengine.com',
+        baseUrl: `${process.env.GATSBY_WP_PROTOCOL}://${process.env.GATSBY_WP_URL}`,
         // Gravity Forms API
         api: {
           key: process.env.GF_CONSUMER_KEY,
@@ -40,23 +42,12 @@ module.exports = {
         },
       },
     },
-  //   {
-  //     resolve: `gatsby-source-wordpress`,
-  //     options: {
-  //         // Your WordPress source.
-  //         baseUrl: `gatsbyreact.wpengine.com`,
-  //         protocol: `https`,
-  //         // Only fetches posts, tags and categories from the baseUrl.
-  //         includedRoutes: ['**/posts','**/pages', '**/tags', '**/categories', '**/menus', '**/users',],
-  //         // Not using ACF so putting it off.
-  //         useACF: true
-  //     }
-  // },
   {
     resolve: "gatsby-source-wordpress",
     options: {
-      baseUrl: "gatsbyreact.wpengine.com",
-      protocol: "http",
+      baseUrl: process.env.GATSBY_WP_URL,
+      protocol: process.env.GATSBY_WP_PROTOCOL,
+      restApiRoutePrefix: "wp-json",
       hostingWPCOM: false,
       useACF: true,
       plugins: [
@@ -64,8 +55,8 @@ module.exports = {
           resolve: `gatsby-wordpress-inline-images`,
           options:
           {
-            baseUrl: `inspiring-meninsky-da9386.netlify.app`,
-            protocol: `https`
+            baseUrl: process.env.GATSBY_WP_URL,
+            protocol: process.env.GATSBY_WP_PROTOCOL,
           }
         }
       ],
@@ -81,10 +72,9 @@ module.exports = {
         "**/menus",
         "**/beer"
       ],
-      verboseOutput: true,
       searchAndReplaceContentUrls: {
-        sourceUrl: "inspiring-meninsky-da9386.netlify.app",
-        replacementUrl: "gatsbyreact.wpengine.com",
+        sourceUrl: `${process.env.GATSBY_WP_PROTOCOL}:\/\/${process.env.GATSBY_WP_URL}(?!\/wp-content)`,
+        replacementUrl: process.env.GATSBY_REPLACEMENT_URL,
       },
     },
   },
@@ -92,7 +82,8 @@ module.exports = {
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
    
-    
+    "gatsby-transformer-sharp",
+    "gatsby-plugin-sharp",
   ],
   
 }

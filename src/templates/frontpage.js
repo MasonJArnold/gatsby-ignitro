@@ -1,41 +1,50 @@
 import React from "react"
 import { graphql } from "gatsby"
 import Layout from "../layouts"
-import Head from "../components/head"
+import Hero from '../components/hero';
 
-class FrontPageTemplate extends Component {
+const FrontPage = props => {
+  const {hero_h1_title, hero_copy, hero_background, hero_cta, hero_cta_link} = props.data.wordpressPage.hero;
 
-  render() {
-    const post = this.props.data.wordpressPost
-    // @TODO: STEP #5: Use title and content in Gatsby.
-    return (
-      <Layout>
-        <div className="container">
-         <div className="grid">
-            <div className="col-sm-12">
-              <h1>FRONT PAGE</h1>
-            </div>
-         </div>
-        </div>
-      </Layout>
-    )
-  }
+  console.log(hero_background.localFile);
+
+  return (
+    <Layout>
+      <Hero
+        hero_h1_title = {hero_h1_title}
+        hero_copy = {hero_copy}
+        hero_background = {hero_background.localFile.childImageSharp.fluid.src}
+        hero_cta = {hero_cta}
+        hero_cta_link = {hero_cta_link}
+      />
+    </Layout>
+  )
 }
+export default FrontPage
 
-PostTemplate.propTypes = {
-  data: PropTypes.object.isRequired,
-  edges: PropTypes.array,
-}
-
-export default PostTemplate
-
-
-export const pageQuery = graphql`
-  query($id: String!) {
-    wordpressPost(id: { eq: $id }) {
-      title
-      content
-      excerpt
+export const query = graphql`
+  query($id: Int!) {
+    wordpressPage(wordpress_id: { eq: $id }) {
+      hero: acf {
+        hero_copy
+        hero_cta
+        hero_cta_link
+        hero_h1_title
+        hero_background {
+          alt_text
+          source_url
+          localFile {
+            publicURL
+            childImageSharp {
+              fluid {
+                src
+                base64
+              }
+            }
+          }
+        }
+      }
     }
   }
+
 `

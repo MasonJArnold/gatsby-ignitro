@@ -8,11 +8,15 @@
 /**
  * Implement Gatsby's Node APIs in this file.
  *
- * See: https://www.gatsbyjs.org/docs/node-apis/
+ * See: ser
  */
 
 const path = require("path")
 const slash = require("slash")
+
+/*require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+})*/
 
 /**
  * Implement the Gatsby API “createPages”. This is
@@ -34,26 +38,25 @@ exports.createPages = async ({ graphql, actions }) => {
    */
   const result = await graphql(`
     {
-      allWordpressPage {
+      allWordpressPost(filter: {status: {eq: "publish"}}) {
         edges {
           node {
             id
             wordpress_id
-            path
+            slug:path
             status
-            template
+            format
           }
         }
       }
-      allWordpressPost {
+      allWordpressPage(filter: {status: {eq: "publish"}}) {
         edges {
           node {
             id
             wordpress_id
-            slug
+            slug:path
             status
             template
-            format
           }
         }
       }
@@ -66,19 +69,12 @@ exports.createPages = async ({ graphql, actions }) => {
   }
 
   // Access query results via object destructuring.
-  const { allWordpressPost, allWordpressPage, allWordpressWpBeer } = result.data
+  const { allWordpressPost, allWordpressPage } = result.data
 
-  const postTemplate = path.resolve("./src/templates/post.js")
-  // const BeerPost = path.resolve("./src/templates/post.js")
-  // @TODO: STEP #3: Create pages in Gatsby with WordPress Posts Data.
-  /**
-   * We want to create a detailed page for each
-   * post node. We'll just use the WordPress Slug for the slug.
-   * The Post ID is prefixed with 'POST_'
-   */
+  const postTemplate = path.resolve("./src/templates/post.js");
   allWordpressPost.edges.forEach(edge => {
     createPage({
-      path: `/${edge.node.slug}/`,
+      path: `${edge.node.slug}`,
       component: slash(postTemplate),
       context: {
         id: edge.node.id,
@@ -86,14 +82,18 @@ exports.createPages = async ({ graphql, actions }) => {
     })
   })
 
-
   const pageTemplate = path.resolve("./src/templates/page.js")
   allWordpressPage.edges.forEach(edge => {
+    const {slug, template, wordpress_id} = edge.node;
+    let wpTemplate = pageTemplate;
+    if(template)
+      wpTemplate = path.resolve("./src/templates/"+template.replace('.php','.js'));
+
     createPage({
-      path: `/${edge.node.slug}`,
-      component: pageTemplate,
+      path: `${slug}`,
+      component: wpTemplate,
       context: {
-        id: edge.node.wordpress_id,
+        id: wordpress_id,
       },
     })
   })

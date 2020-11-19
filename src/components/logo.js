@@ -12,6 +12,13 @@ export default (props) => (
               logo {
                 alt_text
                 source_url
+                localFile {
+                  childImageSharp {
+                    fluid {
+                      src
+                    }
+                  }
+                }
               }
             }
           }
@@ -22,7 +29,7 @@ export default (props) => (
       let logo = data.allWordpressAcfOptions.nodes[0].options.logo;
 
       return (
-         <img className={props.className} src={logo.source_url} alt={logo.alt_text} />
+         <img className={props.className} src={logo.localFile.childImageSharp.fluid.src} alt={logo.alt_text} />
       );
     }
   }
