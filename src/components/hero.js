@@ -1,18 +1,10 @@
 import React from 'react';
 import '../css/hero.css';
-<<<<<<< HEAD
+
 // import Img from "gatsby-image"
 
 function Hero(props) {
   const {hero_h1_title, hero_copy, hero_background, hero_cta, hero_cta_link} = props;
-=======
-
-function Hero(props) {
-
-
-
-   const {hero_h1_title, hero_copy, hero_image, hero_cta, hero_cta_link} = props;
->>>>>>> 0ca4e45acabe3abc308319e947a0fa24fb957a15
 
     const heroH1 = {
       color: "white",
@@ -27,19 +19,11 @@ function Hero(props) {
       padding: 0,
     };
     const homeHero = {
-<<<<<<< HEAD
-      backgroundImage: "url('"+hero_background+"')",
-      padding: "50px 0px",
-      backgroundSize: "cover",
-      backgroundPosition: "center",
-      textAlign: "right",
-=======
       backgroundImage: "url('"+hero_image+"')",
       padding: "50px 0px",
       backgroundSize: "cover",
       backgroundPosition: "center",
       textAlign: "center",
->>>>>>> 0ca4e45acabe3abc308319e947a0fa24fb957a15
       position: "relative",
     }; 
     const heroCTA = {
@@ -58,14 +42,6 @@ function Hero(props) {
       position:"absolute",
       top: 0,
       bottom: 0,
-<<<<<<< HEAD
-      width: "50%",
-      right: 0,
-      // left: 0
-    };
-  return (
-      <div className="homeHero" style={homeHero}>
-=======
       width: "100%",
       right: 0,
       // left: 0
@@ -73,7 +49,6 @@ function Hero(props) {
 
   return (
     <div className="homeHero" style={homeHero}>
->>>>>>> 0ca4e45acabe3abc308319e947a0fa24fb957a15
       <div style={heroOverlay}></div>
         <div className="container">
           <div className="grid">
@@ -87,10 +62,4 @@ function Hero(props) {
       </div>
   )
 }
-<<<<<<< HEAD
 export default Hero
-
-
-=======
-export default Hero
->>>>>>> 0ca4e45acabe3abc308319e947a0fa24fb957a15
