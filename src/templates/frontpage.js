@@ -6,7 +6,7 @@ import Hero from '../components/hero';
 const FrontPage = props => {
   const {hero_h1_title, hero_copy, hero_background, hero_cta, hero_cta_link} = props.data.wordpressPage.hero;
 
-  console.log(hero_background.localFile);
+  console.log(props);
 
   return (
     <Layout>

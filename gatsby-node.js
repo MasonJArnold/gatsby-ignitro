@@ -89,6 +89,9 @@ exports.createPages = async ({ graphql, actions }) => {
     if(template)
       wpTemplate = path.resolve("./src/templates/"+template.replace('.php','.js'));
 
+    console.log('------------------------');
+    console.log(wpTemplate);
+
     createPage({
       path: `${slug}`,
       component: wpTemplate,

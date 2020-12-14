@@ -19,7 +19,7 @@ function Hero(props) {
       padding: 0,
     };
     const homeHero = {
-      backgroundImage: "url('"+hero_image+"')",
+      backgroundImage: "url('"+hero_background+"')",
       padding: "50px 0px",
       backgroundSize: "cover",
       backgroundPosition: "center",
