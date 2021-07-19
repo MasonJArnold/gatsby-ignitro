@@ -24,7 +24,7 @@
     "gatsby-plugin-styled-components": "^3.3.10",
     "gatsby-source-filesystem": "^2.3.14",
     "gatsby-source-gravityforms": "^1.0.15",
-    "gatsby-source-wordpress": "^3.3.15",
+    "gatsby-source-wordpress": "^4.0.8",
     "gatsby-transformer-sharp": "^2.5.21",
     "gatsby-wordpress-inline-images": "^1.2.1",
     "prop-types": "^15.7.2",
